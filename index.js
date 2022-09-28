@@ -159,6 +159,17 @@ var vocabularyEnglish = [
   // ['', ''],
 ];
 
+var songs = [
+  'Lười học thì chóng làm quan',
+  'Đã dốt lại còn lười',
+  'Sai rồi! Cố gắng lên con',
+  'Gần đúng rồi bạn, Cố lên nào',
+  'Hay! Câu trả lời đình đám nhất',
+  'Ngu dốt là tội ác, là giặc',
+  'Lười nhác là kẻ thù của chính bản thân mình',
+  'Không có Tri thức là tự làm nhục bản thân mình',
+];
+
 lengths = vocabularyEnglish.length;
 var randomTerm = '';
 
@@ -167,6 +178,12 @@ function getRandom() {
   questionFrontId.innerHTML = `${randomTerm[1]}`;
   lengthArr.innerHTML = `Nhập bằng English        (${i} / ${lengths})`;
   answerElement.innerHTML = '';
+}
+
+var randomSong = '';
+function getRandomSong() {
+  randomSong = songs[Math.floor(Math.random() * songs.length)];
+  formMessage.innerHTML = `${randomSong}`;
 }
 
 cardNext.addEventListener('click', function () {
@@ -181,7 +198,7 @@ cardNext.addEventListener('click', function () {
         getRandom();
         return undefined;
       } else {
-        formMessage.innerHTML = `Ngu dốt    !!!!!!!!!!!!`;
+       getRandomSong();
       }
       return formMessage;
     }
