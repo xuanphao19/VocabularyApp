@@ -189,8 +189,10 @@ function getRandomSong() {
 cardNext.addEventListener('click', function () {
   handleTest = function (answerElement) {
     if (formMessage) {
-      if (!/[A-Z]/.test(answerElement.value)) {
-        suggestionsMsg.innerHTML = `Chú ý viết HOA`;
+      if (answerElement.value) {
+        if (!/[A-Z]/.test(answerElement.value)) {
+          suggestionsMsg.innerHTML = `Chú ý viết HOA`;
+        }
       }
       if (answerElement.value === randomTerm[0]) {
         formMessage.innerHTML = '';
@@ -198,7 +200,7 @@ cardNext.addEventListener('click', function () {
         getRandom();
         return undefined;
       } else {
-       getRandomSong();
+        getRandomSong();
       }
       return formMessage;
     }
