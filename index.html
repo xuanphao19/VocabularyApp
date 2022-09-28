@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Create Flash Card App</title>
+    <link rel="icon" type="image/x-icon" href="./screenshot_1662025446.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body onload='getRandom()'>
+    <div class="main">
+      <div class="form" id="form-1">
+        <h3 class="heading"> ❤️ <i>Love again <br /> from the beginning!</i> </h3>
+        <h4 class="sub-heading">Vocabulary test</h4>
+
+        <div class="flip-card-inner">
+
+          <div class="flip-card-front">
+            <img src="./MisaCute.png" alt="Avatar" />
+
+          </div>
+
+          <div class="flip-card-back">
+            <img src="./screenshot_1662025446.png" alt="Avatar" />
+
+            <div class="questionBack">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-content">
+          <div class="questionFront">
+            <div class="form-group">
+              <span class="form-label"> Question: <span class='lengthArr'></span></span>
+              <div class="form-control" id="questionFront"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="answer" class="form-label"> Answer plan: </label>
+            <input class="form-control" id="answer" name="answer" rules="required"
+              placeholder="Nhập nội dung trả lời của bạn!" type="text" />
+            <span class="form-message"></span>
+            <span class="suggestions"></span>
+          </div>
+
+          <div class="show-btn">
+            <label for="answer">
+              <button id="suggestions" class="btn">Xem gợi ý</button></label>
+            <button id="next" class="btn">Tiếp tục</button>
+          </div>
+          <div id="result"></div>
+          <button id="submit" class="btn">Nộp bài</button>
+          <div id="submitResult"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
