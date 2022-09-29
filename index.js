@@ -1,15 +1,10 @@
 var card = document.querySelector('.flip-card-inner');
 var cardNext = document.querySelector('#next');
-var invalidElement = document.querySelectorAll('.form-group');
-var cardFront = document.querySelector('#cardFront');
 var suggestions = document.querySelector('#suggestions');
-var formMessage = document.querySelector('.form-message');
+var formMessage = document.querySelector('.App-message');
 var suggestionsMsg = document.querySelector('.suggestions');
 var answerElement = document.querySelector('#answer');
-var questionFrontElement = document.querySelector('.questionFront');
 var questionFrontId = document.querySelector('#questionFront');
-var questionBackElement = document.querySelector('.questionBack');
-// var questionBackId = document.querySelector('#questionBack');
 var submit = document.querySelector('#submit');
 var lengthArr = document.querySelector('.lengthArr');
 var submitResult = document.querySelector('#submitResult');
@@ -35,6 +30,50 @@ var vocabularyEnglish = [
   ['Play beach games', 'chơi các môn thể thao trên bãi biển'],
   ['DIY: Do-It-Yourself', 'tự làm, tự sửa (đồ gì)'],
   ['Satisfied', 'hài lòng'],
+  ['Nguyễn Thanh Hòa', 'Nhập: tên của bố bạn'],
+  ["What is your mother's name?", 'Tên mẹ của bạn là gì?'],
+  ["What is your sister's name?", 'Tên chị gái của bạn là gì'],
+  ["What is your brother's name?", 'tên em trai của bạn là gì'],
+  ['DIY project', 'N:dự án, kế hoạch tự làm (đồ gì)'],
+  ['Mountain biking', 'n: hoạt động đạp xe leo núi'],
+  ['Go mountain biking', 'n: đạp xe leo núi'],
+  ['Socialising', 'n: hoạt động giao lưu'],
+  ['Socialise ', 'v: giao lưu'],
+  ['Texting', 'n: nhắn tin'],
+  ['Text', 'v: nhắn tin'],
+  ['Surfing the Internet', 'n: lướt web'],
+  ['Surf the Internet', 'v: lướt web'],
+  ['hanging', 'They liked...out together when they were kids'],
+  ['eating', 'I fancy ... out with friends at the weekend'],
+  ['Doing', '.... DIY brings you a lot of amazing benefits'],
+  ['Paddy', 'n: cánh đồng lúa'],
+  ['Rice', 'n: lúa, gạo, cơm'],
+  ['Rice straw', 'rơm'],
+  ['Harvest time', 'n: mùa thu hoạch, mùa gặt'],
+  ['Harvest - Collect', 'v: thu hoạch, gặt'],
+  ['Ripe', 'ad: chín'],
+  ['Buffalo-drawn cart', 'xe trâu kéo'],
+  ['Grill fish in rice straw', 'v: nướng cá bằng rơm'],
+  ['Fly a kite', 'v: thả diều'],
+  ['Herd the buffalo', 'chăn trâu'],
+  ['Flying kites in the wide open countryside is great fun', 'Viết lại vd(123) Fly a kite'],
+  ['Go herding the buffalo', 'v: chăn trâu'],
+  ['Herd the cattle', 'v: chăn bò'],
+  ['Herd the sheep', 'v: chăn cừu'],
+  ['Livestock', 'gia súc'],
+  ['Ride a buffalo', 'cưỡi trâu'],
+  ['Pick fruit', 'hái trái cây'],
+  ['Pick wild flowers', 'hái hoa dại'],
+  ['Collect hay', 'lượm cỏ khô'],
+  ['Collect water', 'lấy nước'],
+  ['Convenient', 'ad: thuận tiện'],
+  ['Inconvenient', 'ad: bất tiện'],
+  ['Peaceful', 'ad: yên bình'],
+  ['Hospitable', 'hiếu khách'],
+  ['Vietnamese people are very hospitable', 'Viết lại vd(123) với từ: Hospitable'],
+  ['Generous', 'hào phóng'],
+  ['Optimistic', 'lạc quan'],
+
   // ['', ''],
   // ['', ''],
   // ['', ''],
@@ -113,53 +152,16 @@ var vocabularyEnglish = [
   // ['', ''],
   // ['', ''],
   // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
+  ['Paddy field', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/1.mp3"></audio>'],
+  ['Harvest time', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/4.mp3"></audio>'],
+  [
+    'Go herding the buffalo(es)',
+    'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/11.mp3"></audio>',
+  ],
+  ['Herd the buffalo(es)', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/10.mp3"></audio>'],
 ];
 
-var songs = [
+https: var songs = [
   'Lười học thì chóng làm quan',
   'Đã dốt lại còn lười',
   'Sai rồi! Cố gắng lên con',
@@ -176,7 +178,7 @@ var randomTerm = '';
 function getRandom() {
   randomTerm = vocabularyEnglish[Math.floor(Math.random() * vocabularyEnglish.length)];
   questionFrontId.innerHTML = `${randomTerm[1]}`;
-  lengthArr.innerHTML = `Nhập bằng English        (${i} / ${lengths})`;
+  lengthArr.innerHTML = `Nhập lại bằng English ${i} / ${lengths}`;
   answerElement.innerHTML = '';
 }
 
@@ -206,67 +208,48 @@ cardNext.addEventListener('click', function () {
     }
   };
 
-  // questionBackElement.innerHTML = `
-  //             <div class="form-group">
-  //               <span for="fullname" class="form-label"> Question: <span class='lengthArray'></span>
-  //               </span>
-  //               <div class="form-control" id="questionBack">${randomTerm[1]}!</div>
-  //             </div>`;
-
+  submitResult.innerHTML = '';
   if (answerElement.value === randomTerm[0]) {
     i += 1;
     lengthArr.innerHTML = `${i} / ${lengths}`;
   }
 
-  // var lengthArray = document.querySelector('.lengthArray');
-  // if (lengthArray) {
-  //   lengthArray.innerHTML = `${i} / ${lengths}`;
-  // }
   suggestionsMsg.innerHTML = '';
   if (handleTest(answerElement) === undefined) {
     card.classList.toggle('is-flipped');
   }
-  console.log(i);
-
   return i;
 });
 
 suggestions.addEventListener('click', function () {
-  formMessage.innerHTML = '';
   submitResult.innerHTML = '';
-
-  if (!answerElement.value) {
-    suggestionsMsg.innerHTML = `Vui lòng nhập câu trả lời của bạn`;
+  formMessage.innerHTML = '';
+  suggestionsMsg.innerHTML = '';
+  if (answerElement.value === '') {
+    suggestionsMsg.innerHTML = `Lười học là "Bệnh cần chống như chống giặc!"`;
+    return;
+  } else {
+    suggestionsMsg.innerHTML = `Click Next để kiểm tra kết quả của bạn!`;
     return;
   }
-  if (handleTest(answerElement) !== undefined && answerElement.value) {
-    suggestionsMsg.innerHTML = `Lười học là 'Bệnh cần chống như chống giặc!'`;
-  }
-  if (handleTest(answerElement) === undefined) {
-    suggestionsMsg.innerHTML = `Click Next để kiểm tra kết quả của bạn!`;
-  }
-  formMessage.innerHTML = '';
 });
 
 submit.addEventListener('click', function () {
+  formMessage.innerHTML = '';
+  suggestionsMsg.innerHTML = '';
   if (!answerElement.value) {
     suggestionsMsg.innerHTML = '';
-    submitResult.innerHTML = `Cần hoàn thành ít nhất 10 câu trả lời đúng!`;
+    submitResult.innerHTML = `Cần trả lời đúng ít nhất 10 câu!`;
+    return;
   }
-  if (handleTest(answerElement) === undefined) {
-    if (lengthArr.value < 10) {
-      submitResult.innerHTML = `Bạn chưa hoàn thành đủ 10 câu trả lời đúng!`;
-    }
-    // submitResult.classList.add('correctResult');
-    // submitResult.innerHTML = `Kết quả của bạn đã được gửi tới hòm thư: nguyenthanhhoa075@gmail.com.`;
+  if (i < 10) {
+    submitResult.innerHTML = `Bạn chưa hoàn thành đủ 10 câu trả lời đúng!`;
+  }
+  if (i >= 10) {
+    submitResult.classList.add('correctResult');
+    submitResult.innerHTML = `Chúc mừng bạn đã vượt qua thử thách! <br> Kết quả của bạn đã được gửi tới hòm thư: nguyenthanhhoa075@gmail.com.`;
   }
 });
-
-// answerElement.addEventListener('focus', function (answerElement) {
-//   formMessage.innerHTML = '';
-//   submitResult.innerHTML = '';
-//   suggestionsMsg.innerHTML = '';
-// });
 
 answerElement.addEventListener('focus', function handleClearError(e) {
   formMessage.innerHTML = '';
