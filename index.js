@@ -11,14 +11,15 @@ var lengthArr = appElement.querySelector('.lengthArr');
 var submitResult = appElement.querySelector('#submitResult');
 var flipCardFrontEle = appElement.querySelector('.flip-card-front');
 var suggestionsElement = appElement.querySelector('#suggestionsBack');
+var audio = document.querySelector('#audioError');
 var lengths;
 var i = 0;
 
 var vocabularyEnglish = [
-  ['Leisure', 'thời gian rảnh rỗi', "<img src='./Hatrang.png' alt='Avatar' />;", 'Gợi ý'],
+  ['Leisure', 'thời gian rảnh rỗi', "<img src='./Hatrang.png' alt='Avatar' />", 'Gợi ý'],
   ['Leisure activity', 'hoạt động lúc rảnh rỗi', "<img src='./Screenshot_20210503-120123_Gallery.jpg' alt='Avatar' />", 'Gợi ý'],
-  ['Hanging out', 'đi chơi với bạn bè'],
-  ['Hang out', 'tụ tập, đi chơi'],
+  ['Hanging out', 'đi chơi với bạn bè', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/3.jpg>"],
+  ['Hang out', 'tụ tập, đi chơi', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/4.jpg>"],
   ["Let's hang out this weekend", 'Cuối tuần này đi chơi đi!'],
   ['Window shopping', 'V: Đi ngắm đồ bày trong các cửa hàng'],
   ['Go window shopping', 'N: Ngắm đồ bày trong các cửa hàng'],
@@ -33,8 +34,8 @@ var vocabularyEnglish = [
   ['Play beach games', 'chơi các môn thể thao trên bãi biển'],
   ['DIY: Do-It-Yourself', 'tự làm, tự sửa (đồ gì)'],
   ['Satisfied', 'hài lòng'],
-  ['Nguyễn Thanh Hòa', 'Nhập: tên của bố bạn'],
-  ["What is your mother's name?", 'Tên mẹ của bạn là gì?'],
+  ['Nguyễn Thanh Hòa', 'Nhập: tên của bố bạn', "<img src='./Dai_Nhan.png' alt='Avatar' />"],
+  ["What is your mother's name?", 'Tên mẹ của bạn là gì?', "<img src='./EmGaiHiep.jpg' alt='Avatar' />", 'Gợi ý'],
   ["What is your sister's name?", 'Tên chị gái của bạn là gì'],
   ["What is your brother's name?", 'tên em trai của bạn là gì'],
   ['DIY project', 'N:dự án, kế hoạch tự làm (đồ gì)'],
@@ -200,6 +201,7 @@ cardNext.addEventListener('click', function () {
       if (answerElement.value) {
         if (!/[A-Z]/.test(answerElement.value)) {
           suggestionsMsg.innerHTML = `Chú ý viết HOA`;
+          answerElement.classList.add('invalid');
         }
       }
       if (answerElement.value === randomTerm[0]) {
@@ -208,11 +210,14 @@ cardNext.addEventListener('click', function () {
         getRandom();
         return undefined;
       } else {
+        answerElement.classList.add('invalid');
+        audio.play();
         getRandomSong();
       }
       return formMessage;
     }
   };
+
   submitResult.innerHTML = '';
   if (answerElement.value === randomTerm[0]) {
     i += 1;
@@ -239,9 +244,11 @@ suggestions.addEventListener('click', function () {
   }
   card.classList.toggle('is-flipped');
   if (answerElement.value === '') {
+    answerElement.classList.add('invalid');
     suggestionsMsg.innerHTML = `Lười học là "Bệnh cần chống như chống giặc!"`;
     return;
   } else {
+    answerElement.classList.add('invalid');
     suggestionsMsg.innerHTML = `Click Next để kiểm tra kết quả của bạn!`;
     return;
   }
@@ -252,10 +259,12 @@ submit.addEventListener('click', function () {
   suggestionsMsg.innerHTML = '';
   if (!answerElement.value) {
     suggestionsMsg.innerHTML = '';
+    answerElement.classList.add('invalid');
     submitResult.innerHTML = `Bạn cần phải trả lời trước khi bấm nộp bài`;
     return;
   }
   if (i < 10) {
+    answerElement.classList.add('invalid');
     submitResult.innerHTML = `Hoàn thành đủ 10 câu trả lời đúng <br> mới được nộp bài!`;
   }
   if (i >= 10) {
@@ -269,4 +278,5 @@ answerElement.addEventListener('focus', function handleClearError(e) {
   submitResult.innerHTML = '';
   suggestionsMsg.innerHTML = '';
   e.target.value = '';
+  answerElement.classList.remove('invalid');
 });
