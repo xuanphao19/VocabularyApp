@@ -17,24 +17,24 @@ html {
   justify-content: center;
 }
 
-.form {
-  width: 360px;
+.App {
+  width: 338px;
   min-height: 100px;
-  padding: 32px 24px;
+  padding: 20px;
   text-align: center;
   background: rgb(225 238 238);
   border-radius: 6px;
-  margin: 24px;
-  align-self: center;
+  margin: 20px 0 0;
+  align-self: flex-start;
   box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
 }
 
-.form .heading {
+.App .heading {
   font-size: 2.3rem;
   color: rgb(239 0 255);
 }
 
-.form .sub-heading {
+.App .sub-heading {
   margin-top: 5px;
   font-size: 1.6rem;
   font-weight: 400;
@@ -70,9 +70,9 @@ html {
 
 .flip-card-back img,
 .flip-card-front img {
-  width: 312px;
-  height: 312px;
-  margin: 16px 0;
+  width: 296px;
+  height: 296px;
+  margin: 10px 0;
   border-radius: 8px;
 }
 
@@ -82,31 +82,31 @@ html {
   opacity: 0.9;
 }
 
-.form-group {
+.App-group {
   position: relative;
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   flex-direction: column;
 }
 
-.form-content {
-  margin-top: 350px;
+.App-content {
+  margin-top: 325px;
 }
 
-.form-label,
-.form-message,
-.form-control {
+.App-label,
+.App-message,
+.App-control {
   text-align: left;
 }
 
-.form-label {
+.App-label {
   font-weight: 600;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   line-height: 1.8rem;
   font-size: 1.6rem;
 }
 
-.form-control {
+.App-control {
   height: 40px;
   padding: 0px 12px;
   border-radius: 3px;
@@ -115,9 +115,16 @@ html {
   line-height: 40px;
   border: 1px solid #b3b3b3;
   background: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
-
-.form-control:hover {
+.App-control audio {
+  position: absolute;
+  right: -46px;
+  width: 100px;
+  height: 40px;
+}
+.App-control:hover {
   border-color: #1dbfaf;
 }
 
@@ -125,26 +132,26 @@ html {
   user-select: none !important;
 }
 
-.flip-card-inner.invalid .form-message {
+.flip-card-inner.invalid .App-message {
   color: #f33a58;
 }
 
-.flip-card-inner.invalid .form-control {
+.flip-card-inner.invalid .App-control {
   border-color: #f33a58;
 }
-.lengthArr,
-.lengthArray {
+.lengthArr {
   color: red;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-style: italic;
   font-weight: 400;
 }
 .suggestions,
 #submitResult,
-.form-message {
+.App-message {
   font-weight: 400;
-  font-size: 1.5rem;
-  padding: 10px 0 0;
+  font-size: 1.4rem;
+  /* text-align-last: left; */
+  margin-top: 6px;
   color: #f33a58;
 }
 
@@ -153,7 +160,7 @@ html {
   font-size: 1.6rem;
   font-style: italic;
   border-radius: 5px;
-  padding-bottom: 10px;
+  line-height: 1.6;
   color: #bdf33a;
   background-color: #f33a58;
 }
@@ -170,7 +177,7 @@ html {
 }
 
 .btn {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   width: 140px;
   color: rgb(105, 101, 101);
   font-size: 18px;
@@ -183,7 +190,7 @@ html {
 
 #submit {
   margin: 0;
-  width: 312px;
+  width: 296px;
   border: 2px solid rgb(67, 244, 152);
   background-image: linear-gradient(to top, rgb(67, 244, 152), rgb(172 252 211), rgb(67, 244, 152));
 }
