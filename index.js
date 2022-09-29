@@ -152,13 +152,13 @@ var vocabularyEnglish = [
   // ['', ''],
   // ['', ''],
   // ['', ''],
-  ['Paddy field', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/1.mp3"></audio>'],
-  ['Harvest time', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/4.mp3"></audio>'],
+  ['Paddy field', 'Nhập nội dung bạn vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/1.mp3"></audio>'],
+  ['Harvest time', 'Nhập nội dung bạn vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/4.mp3"></audio>'],
   [
     'Go herding the buffalo(es)',
-    'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/11.mp3"></audio>',
+    'Nhập nội dung bạn vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/11.mp3"></audio>',
   ],
-  ['Herd the buffalo(es)', 'Nghe và điền từ vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/10.mp3"></audio>'],
+  ['Herd the buffalo(es)', 'Nhập nội dung bạn vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/10.mp3"></audio>'],
 ];
 
 https: var songs = [
