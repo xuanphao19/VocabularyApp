@@ -155,13 +155,11 @@ html {
   user-select: none !important;
 }
 
-.flip-card-inner.invalid .App-message {
+.App-group .invalid {
   color: #f33a58;
-}
-
-.flip-card-inner.invalid .App-control {
   border-color: #f33a58;
 }
+
 .lengthArr {
   color: red;
   font-size: 1.6rem;
