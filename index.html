@@ -10,7 +10,7 @@
   </head>
   <body onload='getRandom()'>
     <div class="main">
-      <div class="form" id="form-1">
+      <div class="App" id="App-1">
         <h3 class="heading"> ❤️ <i>Love again <br /> from the beginning!</i> </h3>
         <h4 class="sub-heading">Vocabulary test</h4>
 
@@ -30,19 +30,21 @@
           </div>
         </div>
 
-        <div class="form-content">
+        <div class="App-content">
           <div class="questionFront">
-            <div class="form-group">
-              <span class="form-label"> Question: <span class='lengthArr'></span></span>
-              <div class="form-control" id="questionFront"></div>
+            <div class="App-group">
+              <span class="App-label"> Question: <span class='lengthArr'></span></span>
+              <div class="App-control" id="questionFront">
+
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="answer" class="form-label"> Answer plan: </label>
-            <input class="form-control" id="answer" name="answer" rules="required"
+          <div class="App-group">
+            <label for="answer" class="App-label">Answer plan:</label>
+            <input class="App-control" id="answer" name="answer" rules="required"
               placeholder="Nhập nội dung trả lời của bạn!" type="text" />
-            <span class="form-message"></span>
+            <span class="App-message"></span>
             <span class="suggestions"></span>
           </div>
 
