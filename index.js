@@ -3,23 +3,22 @@ var card = appElement.querySelector('.flip-card-inner');
 var cardNext = appElement.querySelector('#next');
 var suggestions = appElement.querySelector('#suggestions');
 var formMessage = appElement.querySelector('.App-message');
-var suggestionsMsg = appElement.querySelector('.suggestions');
 var answerElement = appElement.querySelector('#answer');
-var questionFrontId = appElement.querySelector('#questionFront');
-var submit = appElement.querySelector('#submit');
 var lengthArr = appElement.querySelector('.lengthArr');
-var submitResult = appElement.querySelector('#submitResult');
 var flipCardFrontEle = appElement.querySelector('.flip-card-front');
+var submit = appElement.querySelector('#submit');
+var submitResult = appElement.querySelector('#submitResult');
+var questionFrontId = appElement.querySelector('#questionFront');
+var suggestionsMsg = appElement.querySelector('.suggestions');
 var suggestionsElement = appElement.querySelector('#suggestionsBack');
 var audio = document.querySelector('#audioError');
-var lengths;
-var i = 0;
 
 var vocabularyEnglish = [
   ['Leisure', 'thời gian rảnh rỗi', "<img src='./Hatrang.png' alt='Avatar' />", 'Gợi ý'],
   ['Leisure activity', 'hoạt động lúc rảnh rỗi', "<img src='./Screenshot_20210503-120123_Gallery.jpg' alt='Avatar' />", 'Gợi ý'],
-  ['Hanging out', 'đi chơi với bạn bè', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/3.jpg>"],
-  ['Hang out', 'tụ tập, đi chơi', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/4.jpg>"],
+  ['Hanging out', 'đi chơi với bạn bè', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/3.jpg alt='Avatar' />"],
+  ['Hang out', 'tụ tập, đi chơi', "<img src='https://www.tienganh123.com/file/phothong/lop8-moi/unit1/lesson1/ly-thuyet/img/4.jpg alt='Avatar' />"],
+
   ["Let's hang out this weekend", 'Cuối tuần này đi chơi đi!'],
   ['Window shopping', 'V: Đi ngắm đồ bày trong các cửa hàng'],
   ['Go window shopping', 'N: Ngắm đồ bày trong các cửa hàng'],
@@ -42,7 +41,7 @@ var vocabularyEnglish = [
   ['Mountain biking', 'n: hoạt động đạp xe leo núi'],
   ['Go mountain biking', 'n: đạp xe leo núi'],
   ['Socialising', 'n: hoạt động giao lưu'],
-  ['Socialise ', 'v: giao lưu'],
+  ['Socialise', 'v: giao lưu'],
   ['Texting', 'n: nhắn tin'],
   ['Text', 'v: nhắn tin'],
   ['Surfing the Internet', 'n: lướt web'],
@@ -77,89 +76,14 @@ var vocabularyEnglish = [
   ['Vietnamese people are very hospitable', 'Viết lại vd(123) với từ: Hospitable'],
   ['Generous', 'hào phóng'],
   ['Optimistic', 'lạc quan'],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
-  // ['', ''],
+  // ['',''],
+
   [
     'Livestock include farm animals such as buffalo, cow, goat or sheep',
     'Viết lại nội dung vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson2/vocab/audio/3-1.mp3"></audio>',
   ],
   ['Paddy field', 'Viết lại nội dung vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/1.mp3"></audio>'],
+
   ['Harvest time', 'Viết lại nội dung vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/4.mp3"></audio>'],
   [
     'Go herding the buffaloes',
@@ -168,7 +92,7 @@ var vocabularyEnglish = [
   ['Herd the buffaloes', 'Viết lại nội dung vừa nghe:<audio controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/10.mp3"></audio>'],
 ];
 
-https: var songs = [
+var songs = [
   'Lười học thì chóng làm quan',
   'Đã dốt lại còn lười',
   'Sai rồi! Cố gắng lên con',
@@ -179,20 +103,31 @@ https: var songs = [
   'Không có Tri thức là tự làm nhục bản thân mình',
 ];
 
-lengths = vocabularyEnglish.length;
-var randomTerm = '';
+var i = 0;
+var lengths = vocabularyEnglish.length;
 
-function getRandom() {
-  randomTerm = vocabularyEnglish[Math.floor(Math.random() * vocabularyEnglish.length)];
+var numbers = [];
+var randomTerm;
+
+function getRandomQuestion() {
+  do {
+    randomTerm = vocabularyEnglish[Math.floor(Math.random() * lengths)];
+  } while (randomTerm === this.length);
+
   questionFrontId.innerHTML = `${randomTerm[1]}`;
   lengthArr.innerHTML = `Nhập lại bằng English ${i} / ${lengths}`;
   answerElement.innerHTML = '';
 }
 
 var randomSong = '';
+
 function getRandomSong() {
-  randomSong = songs[Math.floor(Math.random() * songs.length)];
-  formMessage.innerHTML = `${randomSong}`;
+  let newRandomSong;
+  do {
+    newRandomSong = songs[Math.floor(Math.random() * songs.length)];
+  } while (newRandomSong === this.length);
+
+  formMessage.innerHTML = `${newRandomSong}`;
 }
 
 cardNext.addEventListener('click', function () {
@@ -207,7 +142,7 @@ cardNext.addEventListener('click', function () {
       if (answerElement.value === randomTerm[0]) {
         formMessage.innerHTML = '';
         submitResult.innerHTML = '';
-        getRandom();
+        getRandomQuestion();
         return undefined;
       } else {
         answerElement.classList.add('invalid');
@@ -219,6 +154,7 @@ cardNext.addEventListener('click', function () {
   };
 
   submitResult.innerHTML = '';
+  console.log(randomTerm[0]);
   if (answerElement.value === randomTerm[0]) {
     i += 1;
     lengthArr.innerHTML = `${i} / ${lengths}`;
@@ -227,6 +163,7 @@ cardNext.addEventListener('click', function () {
   suggestionsMsg.innerHTML = '';
   if (handleTest(answerElement) === undefined) {
     card.classList.remove('is-flipped');
+    answerElement.focus();
     if (randomTerm[2]) {
       flipCardFrontEle.innerHTML = `${randomTerm[2]}`;
     }
@@ -234,6 +171,7 @@ cardNext.addEventListener('click', function () {
 
   return i;
 });
+console.log(i);
 
 suggestions.addEventListener('click', function () {
   submitResult.innerHTML = '';
