@@ -175,7 +175,7 @@ html {
   margin-top: 6px;
   color: #f33a58;
 }
-
+.correctResults,
 #submitResult.correctResult {
   margin-top: 2px;
   font-size: 1.6rem;
@@ -184,6 +184,11 @@ html {
   line-height: 1.6;
   color: #bdf33a;
   background-color: #f33a58;
+}
+
+#submitResult.correctResults {
+  color: #b400b4;
+  background-color: #93d7d7;
 }
 
 .suggestions {
