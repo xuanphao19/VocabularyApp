@@ -175,7 +175,6 @@ cardNext.addEventListener('click', function () {
       if (!testUppercase.test(answerElement.value)) {
         suggestionsMsg.innerHTML = `Chú ý: Cần viết "HOA" cho chính xác`;
         answerElement.classList.add('invalid');
-        console.log(`1   ở đây có gì?`);
       }
     }
 
@@ -262,3 +261,19 @@ answerElement.addEventListener('focus', function handleClearError(e) {
   suggestionsMsg.innerHTML = '';
   answerElement.classList.remove('invalid');
 });
+
+// Chặn hành vi mặc định của Keydown và gán cho keydown Enter bằng Click
+answerElement.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    cardNext.click();
+  }
+});
+
+answerElement.oninput = function () {
+  formMessage.innerHTML = '';
+  submitResult.innerHTML = '';
+  suggestionsMsg.innerHTML = '';
+  answerElement.classList.remove('invalid');
+  answerElement.classList.toggle('unInvalid');
+};

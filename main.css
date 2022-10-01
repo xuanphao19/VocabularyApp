@@ -130,21 +130,19 @@ html {
   outline: none;
   font-size: 1.7rem;
   line-height: 40px;
-  border: 1px solid #b3b3b3;
+  border: 1px solid rgb(239 0 255 / 27%);
   background: #ffffff;
   position: relative;
   overflow: hidden;
 }
 
-.App-control audio {
-  position: absolute;
-  right: -46px;
-  width: 100px;
-  height: 40px;
+.App-control:hover {
+  border-color: #1dbfaf9a;
 }
 
-.App-control:hover {
+.unInvalid {
   border-color: #1dbfaf;
+  background-color: #effad5;
 }
 
 #answer input {
@@ -170,7 +168,7 @@ html {
 #submitResult,
 .App-message {
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   /* text-align-last: left; */
   margin-top: 6px;
   color: #f33a58;

@@ -262,3 +262,4 @@ answerElement.addEventListener('focus', function handleClearError(e) {
   suggestionsMsg.innerHTML = '';
   answerElement.classList.remove('invalid');
 });
+
