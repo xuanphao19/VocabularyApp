@@ -122,13 +122,14 @@ function getRandomQuestion() {
       }
     }
   }
-  randomTerm = vocabularyEnglish[n];
-  console.log(`Cái gì đây ta?`, randomTerm);
 
+  randomTerm = vocabularyEnglish[n];
   questionFrontId.innerHTML = `${randomTerm[1]}`;
   lengthArr.innerHTML = `Nhập lại bằng English ${i} / ${lengths}`;
   answerElement.innerHTML = '';
-  console.log(`Number =`, randomNumbers.join('+'), `= `, lengths);
+
+  console.log(`Gợi ý dành cho bạn: `, randomTerm);
+
   return randomTerm;
 }
 
@@ -141,6 +142,7 @@ function getRandomSong() {
   formMessage.innerHTML = `${newRandomSong}`;
 }
 var answerValue = answerElement.value;
+
 cardNext.addEventListener('click', function () {
   handleTest = function (answerElement) {
     if (formMessage) {
@@ -149,19 +151,18 @@ cardNext.addEventListener('click', function () {
         if (answerElement.value && !testPunctuation.test(answerElement.value)) {
           suggestionsMsg.innerHTML = `Chú ý: Sử dụng dấu câu cho chính xác`;
           answerElement.classList.add('invalid');
-          console.log(`2   ở đây có gì?`);
         }
       }
 
       if (answerElement.value === '') {
         answerElement.classList.add('invalid');
         suggestionsMsg.innerHTML = `Nhân bất học bất trí lý!"`;
-        console.log(`3   ở đây có gì?`);
       }
 
       if (answerElement.value === randomTerm[0]) {
         formMessage.innerHTML = '';
         submitResult.innerHTML = '';
+        playerMusic();
         getRandomQuestion();
         return undefined;
       } else {
@@ -186,7 +187,6 @@ cardNext.addEventListener('click', function () {
     j += 1; /* J để xử lý treo máy khi lặp quấ giới hạn */
     lengthArr.innerHTML = `${i} / ${lengths}`;
     if (j === lengths - 1) {
-      console.log(`Thành thật xin lỗi quý vị ta có j =`, j);
       j = 0;
       randomNumbers = [];
     }
@@ -208,7 +208,6 @@ cardNext.addEventListener('click', function () {
     submitResult.innerHTML = `Chúc mừng bạn!<br> Bạn đã vượt qua thử thách. <br> Bạn vẫn có thể tiếp tục luyện tập <br> Nếu bạn muốn nâng cao Trình độ!`;
   }
 });
-console.log(formMessage);
 
 suggestions.addEventListener('click', function () {
   submitResult.innerHTML = '';
@@ -277,3 +276,12 @@ answerElement.oninput = function () {
   answerElement.classList.remove('invalid');
   answerElement.classList.toggle('unInvalid');
 };
+
+var audioPlays = ['sairoichipoi.m4a', 'Tieng-yeah-tre-con.mp3'];
+var audioElement = document.querySelector('#audioErrors');
+
+function playerMusic() {
+  audioElement.innerHTML = `<audio id='audioError' src="./${audioPlays[1]}"></audio>`;
+  var audio = document.querySelector('#audioError');
+  audio.play();
+}
