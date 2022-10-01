@@ -84,19 +84,26 @@ html {
 
 #suggestionsBack {
   position: absolute;
-  top: 249px;
+  top: 9px;
   margin: 0 auto;
+  padding-top: 174px;
+  padding-right: 12px;
+  padding-left: 12px;
   width: 292px;
-  height: 56px;
-  font-size: 2.4rem;
+  height: 296px;
+  font-size: 1.6rem;
+  text-shadow: -0.5px 0.5px 0 #ffffff;
   font-weight: 400;
   font-style: italic;
-  color: rgb(0 26 255 / 30%);
-  line-height: 54px;
+  color: rgb(0 0 0);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: 5px 0 10px #ed62629e;
-  background-color: rgba(251, 67, 67, 0.144);
+  background-color: rgb(255 22 22 / 25%);
+  animation: loading04 1.2s infinite;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none !important;
 }
 
 .App-group {
@@ -124,20 +131,36 @@ html {
 }
 
 .App-control {
-  height: 40px;
-  padding: 0px 12px;
+  min-height: 40px;
+  padding: 9px 10px;
   border-radius: 3px;
   outline: none;
   font-size: 1.7rem;
-  line-height: 40px;
+  display: table-cell;
+  vertical-align: middle;
   border: 1px solid rgb(239 0 255 / 27%);
-  background: #ffffff;
+  background-color: #effad5;
   position: relative;
   overflow: hidden;
 }
 
+#questionFront {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none !important;
+}
+
 .App-control:hover {
   border-color: #1dbfaf9a;
+}
+
+.App-control .audioQuestion {
+  position: absolute;
+  right: -64px;
+  top: 0;
+  width: 116px;
+  height: 38px;
+  z-index: 999;
 }
 
 .unInvalid {
@@ -156,10 +179,6 @@ html {
   word-break: break-word;
 }
 
-#questionFront {
-  user-select: none !important;
-}
-
 .App-group .invalid {
   color: #f33a58;
   border-color: #f33a58;
@@ -172,16 +191,19 @@ html {
   font-weight: 400;
 }
 
-.suggestions,
 #submitResult,
+.suggestions,
 .App-message {
   font-weight: 400;
   font-size: 1.4rem;
-  /* text-align-last: left; */
   margin-top: 6px;
   color: #f33a58;
 }
-.correctResults,
+
+#submitResult {
+  padding-top: 6px;
+}
+
 #submitResult.correctResult {
   margin-top: 2px;
   font-size: 1.6rem;
@@ -193,6 +215,11 @@ html {
 }
 
 #submitResult.correctResults {
+  margin-top: 2px;
+  font-size: 1.6rem;
+  font-style: italic;
+  border-radius: 5px;
+  line-height: 1.6;
   color: #b400b4;
   background-color: #93d7d7;
 }
@@ -233,4 +260,14 @@ html {
 #submit:hover {
   transform: scale(1.03);
   opacity: 0.8;
+}
+
+@keyframes loading04 {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(360deg);
+  }
 }
