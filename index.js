@@ -162,8 +162,8 @@ cardNext.addEventListener('click', function () {
       if (answerElement.value === randomTerm[0]) {
         formMessage.innerHTML = '';
         submitResult.innerHTML = '';
-        playerMusic();
         getRandomQuestion();
+        playerMusic();
         return undefined;
       } else {
         answerElement.classList.add('invalid');
@@ -213,6 +213,7 @@ suggestions.addEventListener('click', function () {
   submitResult.innerHTML = '';
   formMessage.innerHTML = '';
   suggestionsMsg.innerHTML = '';
+
   // Xử lý hiển thị gợi ý:
   if (randomTerm[2] === 'Gợi ý') {
     suggestionsElement.innerHTML = `${randomTerm[0]}`;
@@ -254,11 +255,12 @@ submit.addEventListener('click', function () {
 
 // Xóa massage lỗi và input value khi focus input:
 answerElement.addEventListener('focus', function handleClearError(e) {
-  e.target.value = '';
   formMessage.innerHTML = '';
   submitResult.innerHTML = '';
   suggestionsMsg.innerHTML = '';
   answerElement.classList.remove('invalid');
+  answerElement.classList.remove('addInvalid');
+  e.target.value = '';
 });
 
 // Chặn hành vi mặc định của Keydown và gán cho keydown Enter bằng Click
@@ -266,22 +268,34 @@ answerElement.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     event.preventDefault();
     cardNext.click();
+    answerElement.value = '';
   }
 });
 
-answerElement.oninput = function () {
-  formMessage.innerHTML = '';
-  submitResult.innerHTML = '';
-  suggestionsMsg.innerHTML = '';
-  answerElement.classList.remove('invalid');
-  answerElement.classList.toggle('unInvalid');
-};
-
+//  Thay đổi tiếng đúng / sai:
 var audioPlays = ['sairoichipoi.m4a', 'Tieng-yeah-tre-con.mp3'];
 var audioElement = document.querySelector('#audioErrors');
-
 function playerMusic() {
   audioElement.innerHTML = `<audio id='audioError' src="./${audioPlays[1]}"></audio>`;
   var audio = document.querySelector('#audioError');
   audio.play();
 }
+
+// Xử lý so sánh (Tham chiếu) input value với chỗi gốc:
+answerElement.oninput = function () {
+  formMessage.innerHTML = '';
+  submitResult.innerHTML = '';
+  suggestionsMsg.innerHTML = '';
+  answerElement.classList.remove('invalid');
+
+  // Xử lý báo lỗi khi nhập trường đầu vào bị sai:
+  let intInputValue = randomTerm[0];
+  let result = intInputValue.includes(answerElement.value);
+  if (result) {
+    answerElement.classList.remove('addInvalid');
+    answerElement.classList.add('unInvalid');
+  } else {
+    answerElement.classList.remove('unInvalid');
+    answerElement.classList.add('addInvalid');
+  }
+};

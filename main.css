@@ -145,6 +145,14 @@ html {
   background-color: #effad5;
 }
 
+.App-content .App-group .addInvalid {
+  color: #ff0000;
+  font-weight: 500;
+  font-size: 2.4rem;
+  border-color: #ff0000;
+  background-color: #fad5d5c2;
+}
+
 #answer input {
   word-break: break-word;
 }
