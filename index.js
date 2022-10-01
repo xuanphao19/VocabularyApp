@@ -128,7 +128,7 @@ function getRandomQuestion() {
   lengthArr.innerHTML = `Nhập lại bằng English ${i} / ${lengths}`;
   answerElement.innerHTML = '';
 
-  console.log(`Gợi ý dành cho bạn: `, randomTerm);
+  console.log(`Gợi ý dành cho bạn: `, [randomTerm[0]]);
 
   return randomTerm;
 }
@@ -260,6 +260,7 @@ answerElement.addEventListener('focus', function handleClearError(e) {
   suggestionsMsg.innerHTML = '';
   answerElement.classList.remove('invalid');
   answerElement.classList.remove('addInvalid');
+  playBackgroundMusic();
   e.target.value = '';
 });
 
@@ -299,3 +300,8 @@ answerElement.oninput = function () {
     answerElement.classList.add('addInvalid');
   }
 };
+
+var audioBackgroundEle = document.querySelector('#audioBackgroundPlay');
+function playBackgroundMusic() {
+  audioBackgroundEle.play();
+}

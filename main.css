@@ -147,8 +147,7 @@ html {
 
 .App-content .App-group .addInvalid {
   color: #ff0000;
-  font-weight: 500;
-  font-size: 2.4rem;
+  font-size: 1.9rem;
   border-color: #ff0000;
   background-color: #fad5d5c2;
 }
@@ -172,11 +171,12 @@ html {
   font-style: italic;
   font-weight: 400;
 }
+
 .suggestions,
 #submitResult,
 .App-message {
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   /* text-align-last: left; */
   margin-top: 6px;
   color: #f33a58;
@@ -213,6 +213,7 @@ html {
   width: 140px;
   color: rgb(105, 101, 101);
   font-size: 18px;
+  outline: none;
   line-height: 40px;
   border: none;
   cursor: pointer;
