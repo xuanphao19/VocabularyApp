@@ -154,7 +154,7 @@ var songs = [
 
 var lengths = vocabularyEnglish.length;
 var answerValue = answerElement.value;
-var minRequirements = 3;
+var minRequirements = 10;
 var randomNumbers = [];
 var n = 0;
 var i = 0;
