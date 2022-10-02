@@ -14,18 +14,10 @@
         <h3 class="heading"> ❤️ <i>Love again <br /> from the beginning!</i> </h3>
         <h4 class="sub-heading">Vocabulary test</h4>
         <div class="flip-card-inner">
-
-          <div class="flip-card-front">
-            <img src="./MisaCute.png" alt="Avatar" />
-
-          </div>
-
+          <div class="flip-card-front"><img src="./MisaCute.png" alt="Avatar" /></div>
           <div class="flip-card-back">
             <img src="./screenshot_1662025446.png" alt="Avatar" />
-
-            <div id="suggestionsBack">
-
-            </div>
+            <div id="suggestionsBack"> </div>
           </div>
         </div>
 
@@ -33,35 +25,36 @@
           <div class="questionFront">
             <div class="App-group">
               <span class="App-label"> Question: <span class='lengthArr'></span></span>
-              <div class="App-control" id="questionFront">
-              </div>
+              <div class="App-control" id="questionFront"></div>
             </div>
-          </div>
 
-          <div class="App-group">
-            <label for="answer" class="App-label">Answer plan:</label>
-            <input class="App-control" id="answer" name="answer"
-              placeholder="Nhập nội dung trả lời của bạn!" type="text" />
-            <span class="App-message"></span>
-            <span class="suggestions"></span>
-          </div>
+            <div class="App-group">
+              <label for="answer" class="App-label">Answer plan:</label>
+              <input class="App-control" id="answer" name="answer"
+                placeholder="Nhập nội dung trả lời của bạn!" type="text" />
+              <span class="App-message"></span>
+              <span class="suggestions"></span>
+            </div>
 
-          <div class="show-btn">
-            <button id="suggestions" class="btn">Xem gợi ý</button>
-            <button id="next" class="btn">Tiếp tục</button>
+            <div class="show-btn">
+              <button id="suggestions" class="btn">Xem gợi ý</button>
+              <button id="next" class="btn">Tiếp tục</button>
+            </div>
+            <div id="submitResult"></div>
+            <button id="submit" class="btn">
+              <div class='submit'>Nộp bài</div>
+            </button>
           </div>
-          <div id="result"></div>
-          <button id="submit" class="btn">Nộp bài</button>
-          <div id="submitResult"></div>
         </div>
-      </div>
 
-    </div>
-    <div id='audioErrors'><audio id='audioError' src="./sairoichipoi.m4a"></audio></div>
-    <div id='audioBackground'><audio id='audioBackgroundPlay' src="./Nhac_nen_hay.mp3"></audio>
-      <div id='audioBey'><audio id='audioBeyPlay' src="./Tam-biet.mp3"></audio>
+        <div><audio id='audios'></audio></div>
+        <div><audio id='yeahMusic' src="./yeah.mp3"></audio> </div>
+        <div id='audioBeys'><audio id='audioBey' src="./Tam_biet.mp3"></audio> </div>
+
       </div>
-      <script src="./index.js">
-      </script>
+    </div>
+
+    <script src="./index.js"></script>
+
   </body>
 </html>

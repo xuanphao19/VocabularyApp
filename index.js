@@ -1,17 +1,17 @@
 var appElement = document.querySelector('#App-1');
 var card = appElement.querySelector('.flip-card-inner');
-var cardNext = appElement.querySelector('#next');
-var suggestions = appElement.querySelector('#suggestions');
 var formMessage = appElement.querySelector('.App-message');
 var answerElement = appElement.querySelector('#answer');
 var lengthArr = appElement.querySelector('.lengthArr');
 var flipCardFrontEle = appElement.querySelector('.flip-card-front');
+var cardNext = appElement.querySelector('#next');
 var submit = appElement.querySelector('#submit');
+var submitCl = appElement.querySelector('.submit');
 var submitResult = appElement.querySelector('#submitResult');
 var questionFrontId = appElement.querySelector('#questionFront');
+var suggestions = appElement.querySelector('#suggestions');
 var suggestionsMsg = appElement.querySelector('.suggestions');
 var suggestionsElement = appElement.querySelector('#suggestionsBack');
-var audio = document.querySelector('#audioError');
 
 var vocabularyEnglish = [
   ['hanging', 'They liked...out together when they were kids', 'Gợi ý', 'hanging', "<img src='./Hai_co_tam.png' alt='Avatar' />"],
@@ -20,7 +20,6 @@ var vocabularyEnglish = [
   ['Hanging out', 'đi chơi với bạn bè', 'Gợi ý', 'Hanging... ', "<img src='./ChinBacNuiRung.jpg' alt='Avatar' />"],
   ['Hang out', 'tụ tập, đi chơi', 'Gợi ý', ' ... out', "<img src='./PhotDoi.jpg' alt='Avatar' />"],
   ["Let's hang out this weekend", 'Cuối tuần này đi chơi đi!', 'Gợi ý', ' Tình anh như nước dâng cao, <br> Tình em như dải lụa đào tẩm hương.'],
-
   ["What is your brother's name?", 'tên em trai của bạn là gì', 'Gợi ý', " ... brother's name?", "<img src='./Screenshot_20210503-120123_Gallery.jpg' alt='Avatar' />"],
   [
     'Window shopping',
@@ -33,7 +32,7 @@ var vocabularyEnglish = [
     'Go window shopping',
     'v: Đi ngắm đồ bày trong các cửa hàng',
     'Gợi ý',
-    'Trí tuệ không phải là sản phẩm của việc học mà là của nỗ lực cả đời để có được nó (Albert Einstein).',
+    'Trí tuệ không phải là sản phẩm của việc học, mà là của nỗ lực cả đời để có được nó (Albert Einstein).',
     "<img src='./Thanh_ngu.png' alt='Avatar' />",
   ],
   ['Pet training', 'N: Huấn luyện thú cưng', 'Gợi ý', 'Học - học nữa - học mãi (Lê-Nin).'],
@@ -45,7 +44,6 @@ var vocabularyEnglish = [
     "<img src='./khaigiang8A6_2022.png' alt='Avatar' />",
   ],
   ['Making crafts', 'làm đồ thủ công', 'Gợi ý', 'Con tằm bối rối vì tơ  <br> Anh say vì rượu, em ngẩn ngơ vì tình.', "<img src='./GVCN8A6_2022.png' alt='Avatar' />"],
-
   ['Craft kit', 'bộ dụng cụ làm đồ thủ công', 'Gợi ý', 'Dẫu xây chín bậc phù đồ, <br> Không bằng làm phúc, cứu cho một người.', "<img src='./tapthe8A6.png' alt='Avatar' />"],
   ['Bracelet', 'vòng đeo tay', 'Gợi ý', 'Nhiễu điều phủ lấy giá gương <br> Người trong một nước phải thương nhau cùng', "<img src='./trungthu2022.png' alt='Avatar' />"],
   ['Check out something', 'kiểm tra vật gì đó có phù hợp hay không', 'Gợi ý', 'Nghèo mà có nghĩa có nhân <br> Còn hơn sang cả mà lòng bội phu.'],
@@ -67,9 +65,8 @@ var vocabularyEnglish = [
   ['Paddy', 'n: cánh đồng lúa', 'Gợi ý', 'Cứ vui chơi cho hết đời trai trẻ <br>Rồi âm thầm lặng lẽ đạp xích lô.'],
   ['Rice', 'n: lúa, gạo, cơm', 'Gợi ý', 'Gái đâu có gái lạ lùng, <br> Chồng chẳng nằm cùng, ném chó xuống ao.'],
   ['Rice straw', 'rơm', 'Gợi ý', 'Chồng người đánh giặc sông Lô <br> Chồng em ngồi bếp rang ngô cháy quần'],
-  ["What is your sister's name?", 'Tên chị gái của bạn là gì', 'Gợi ý', "... sister's name?"],
+  ["What is your sister's name?", 'Tên chị gái của bạn là gì', 'Gợi ý', "... sister's name?", "<img src='./MisaCute.png' alt='Avatar' />"],
   ['DIY: Do-It-Yourself', 'tự làm, tự sửa (đồ gì)', 'Gợi ý', ' DIY: Do-It-Yourself'],
-
   [
     'Harvest time',
     'n: mùa thu hoạch, mùa gặt',
@@ -86,7 +83,7 @@ var vocabularyEnglish = [
     'Ước gì anh lấy được nàng <br> Để anh mua gạch Bát Tràng về xây <br> Xây dọc rồi lại xây ngang, <br> Xây hồ bán nguyệt cho nàng rửa chân.',
   ],
   ['Fly a kite', 'v: thả diều', 'Gợi ý', 'Bắt đầu ngủ giữa tiết 3 <br> Đến khi tỉnh giấc đã là tiết 5.'],
-  ['Herd the buffalo', 'chăn trâu', 'Gợi ý', 'Học là học biết giữ giàng <br> Biết điều nhân nghĩa biết đàng hiếu trung.​'],
+  ['Herd the buffalo', 'chăn trâu', 'Gợi ý', 'Học là học biết giữ giàng <br> Biết điều nhân nghĩa biết đàng hiếu trung​'],
   ['Go herding the buffalo', 'v: chăn trâu', 'Gợi ý', 'Muốn sang thì bắc cầu Kiều <br>Muốn con hay chữ thì yêu lấy thầy.'],
   ['Herd the cattle', 'v: chăn bò', 'Gợi ý', 'Học khôn đến chết, học nết đến già.'],
   ['Herd the sheep', 'v: chăn cừu', 'Gợi ý', 'Học hành vất vả kết quả ngọt bùi.'],
@@ -108,11 +105,8 @@ var vocabularyEnglish = [
   ['Generous', 'hào phóng', 'Gợi ý', 'Nhỏ còn thơ dại biết chi <br> Lớn thì đi học, học thì phải siêng <br>Theo đòi cũng thể bút nghiêng <br> Thua em kém chị cũng nên hổ mình.'],
   ['Optimistic', 'lạc quan', 'Gợi ý', 'Cơm cha áo mẹ chữ thầy <br> Gắng công mà học có ngày thành danh.'],
   ['Flying kites in the wide open countryside is great fun', 'Viết lại vd(123) Fly a kite', 'Gợi ý', 'Flying kites in the wide open countryside is great fun'],
-
   ["What is your father's name?", 'Tên bố của bạn là gì', 'Gợi ý', 'What is your...', "<img src='./Dai_Nhan.png' alt='Avatar' />"],
-
   ["What is your mother's name?", 'Tên mẹ của bạn là gì?', 'Gợi ý', 'What is your....', "<img src='./EmGaiHiep.jpg' alt='Avatar' />"],
-
   ['Vietnamese people are very hospitable', 'Viết lại vd(123) với từ: Hospitable', 'Gợi ý', 'Vietnamese people are very hospitable'],
   [
     'Livestock include farm animals such as buffalo, cow, goat or sheep',
@@ -124,7 +118,6 @@ var vocabularyEnglish = [
     'Paddy field',
     'Viết lại nội dung vừa nghe:<audio class="audioQuestion" controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/1.mp3"></audio>',
   ],
-
   [
     'Harvest time',
     'Viết lại nội dung vừa nghe:<audio class="audioQuestion" controls><source src="https://www.tienganh123.com/file/phothong/lop8-moi/unit2/lesson1/vocab/audio/4.mp3"></audio>',
@@ -141,7 +134,7 @@ var vocabularyEnglish = [
     'Gợi ý',
     'Herd the buffaloes',
   ],
-  // ['',''],
+  // ['0', '1', '2', '3', '4', '5', '6'],
 ];
 
 var songs = [
@@ -152,62 +145,73 @@ var songs = [
   'Học thầy chẳng tày học bạn.',
   'Ngu dốt là tội ác, là giặc',
   'Có học mới biết, có đi mới đến.',
-  'Có công mài sắt có ngày nên kim.',
   'Học là học đạo làm người <br> Con đừng lêu lổng kẻ cười người chê.',
   'The eye sees only what the mind is prepared to comprehend.',
   'Learn from yesterday, live for today, hope for tomorrow.',
   'Being ignorant is not so much a shame, as being unwilling to learn.',
   'Ngu dốt là tội ác, là giặc',
-  'Lười nhác là kẻ thù của chính bản thân mình',
-  'Không có Tri thức là tự làm nhục bản thân mình',
 ];
 
 var lengths = vocabularyEnglish.length;
-var minRequirements = 10;
+var answerValue = answerElement.value;
+var minRequirements = 3;
 var randomNumbers = [];
-var randomTerm;
+var n = 0;
 var i = 0;
-var j = 0;
-function getRandomQuestion() {
-  var n = Math.floor(Math.random() * lengths);
+var randomTerm;
+var audioElement = document.querySelector('#audios');
+audioElement.src = '';
+
+// Tìm số (n) ngẫu nhiên theo index trong phạm vi max được truyền vào
+function randomNumber(max) {
+  // Xét (n) không cho lặp lại mỗi khi gọi hàm:
+  var j = 0;
+  j++;
+  if (j === max - 1) {
+    j = 0;
+    randomNumbers = [];
+  }
+  n = Math.floor(Math.random() * max);
   var check = randomNumbers.includes(n);
   if (!check) {
     randomNumbers.push(n);
   } else {
     while (check) {
-      n = Math.floor(Math.random() * lengths);
+      n = Math.floor(Math.random() * max);
       check = randomNumbers.includes(n);
       if (!check) {
         randomNumbers.push(n);
       }
     }
   }
+}
 
+// Tạo câu hỏi ngẫu nhiên và hiển thị ra giao diện
+function getRandomQuestion() {
+  // Gọi hàm tạo (n) ngẫu nhiên để  lấy (n) làm chỉ mục
+  randomNumber(lengths);
   randomTerm = vocabularyEnglish[n];
   questionFrontId.innerHTML = `${randomTerm[1]}`;
-  lengthArr.innerHTML = `Nhập lại bằng English ${i} / ${lengths}`;
-
+  lengthArr.innerHTML = `Nhập lại bằng English    ${i} / ${lengths}`;
+  i += 1;
+  // Xử lý nếu có ảnh thì hiển thị ra giao diện khi hàm được gọi.
   if (randomTerm[4]) {
     flipCardFrontEle.innerHTML = `${randomTerm[4]}`;
   }
-
-  answerElement.innerHTML = '';
-
   console.log(`Gợi ý dành cho bạn: `, randomTerm);
-
   return randomTerm;
 }
 
-var randomSong = '';
+//  Ngẫu nhiên in ra cấu chửi bới (Hát):
 function getRandomSong() {
+  var songLength = songs.length;
+  randomNumber(songLength);
   let newRandomSong;
-  do {
-    newRandomSong = songs[Math.floor(Math.random() * songs.length)];
-  } while (newRandomSong === this.length);
+  newRandomSong = songs[n];
   formMessage.innerHTML = `${newRandomSong}`;
 }
-var answerValue = answerElement.value;
 
+// Xử lý khi Click vào Btn Next
 cardNext.addEventListener('click', function () {
   handleTest = function (answerElement) {
     if (formMessage) {
@@ -218,21 +222,20 @@ cardNext.addEventListener('click', function () {
           answerElement.classList.add('invalid');
         }
       }
-
       if (answerElement.value === '') {
         answerElement.classList.add('invalid');
-        suggestionsMsg.innerHTML = `" Nhân bất học bất tri lý. <br> Ngọc bất trác, bất thành khí! "`;
+        suggestionsMsg.innerHTML = `"Nhân bất học bất tri lý. <br> Ngọc bất trác, bất thành khí!" <br>*  *  *<br> "Lười nhác là kẻ thù của chính bản thân mình!" <br> "Không có Tri thức là tự làm nhục Chính mình!" `;
       }
-
       if (answerElement.value === randomTerm[0]) {
         formMessage.innerHTML = '';
         submitResult.innerHTML = '';
+        playMusicYeah();
+        card.classList.remove('is-flipped');
         getRandomQuestion();
-        playerMusic();
         return undefined;
       } else {
         answerElement.classList.add('invalid');
-        audio.play();
+        playErrorMusic();
         getRandomSong();
       }
     }
@@ -243,34 +246,28 @@ cardNext.addEventListener('click', function () {
         answerElement.classList.add('invalid');
       }
     }
-
     return formMessage;
   };
-
-  if (answerElement.value === randomTerm[0]) {
-    i += 1; /* i để hiển thị số lần trả lời đúng trên tổng số Length */
-    j += 1; /* J để xử lý treo máy khi lặp quấ giới hạn */
-    lengthArr.innerHTML = `${i} / ${lengths}`;
-    if (j === lengths - 1) {
-      j = 0;
-      randomNumbers = [];
-    }
-  }
-
   submitResult.innerHTML = '';
   suggestionsMsg.innerHTML = '';
   if (handleTest(answerElement) === undefined) {
-    card.classList.remove('is-flipped');
     answerElement.focus();
-    answerElement.value;
-    // Xử lý thay ảnh nền:
-    if (randomTerm[4]) {
-      flipCardFrontEle.innerHTML = `${randomTerm[4]}`;
-    }
   }
+
   if (i === minRequirements) {
     submitResult.classList.add('correctResults');
+    submitCl.innerHTML = `Nộp Bài Dừng Nghỉ Ngơi!`;
     submitResult.innerHTML = `Chúc mừng bạn!<br> Bạn đã vượt qua thử thách. <br> Bạn vẫn có thể tiếp tục luyện tập <br> Nếu bạn muốn nâng cao Trình độ!`;
+
+    /* Object.assign để hợp nhất Object tạo Css inline nhưng phức tạp */
+    // Object.assign(submitResult.style, {
+    //   padding: '10px 0',
+    //   marginBottom: '9px',
+    // });
+  }
+  if (i === 10 + minRequirements) {
+    submitResult.classList.add('correctResults');
+    submitResult.innerHTML = ` Bạn là người thật chăm chỉ đấy <br> "Có công mài sắt có ngày nên kim" <br> Chúc mừng bạn cán mốc 20 câu đúng!`;
   }
 });
 
@@ -278,6 +275,8 @@ suggestions.addEventListener('click', function () {
   submitResult.innerHTML = '';
   formMessage.innerHTML = '';
   suggestionsMsg.innerHTML = '';
+  submitResult.classList.remove('correctResult');
+  submitResult.classList.remove('correctResults');
   // Xử lý hiển thị gợi ý:
   if (randomTerm[2] === 'Gợi ý') {
     suggestionsElement.innerHTML = `${randomTerm[3]}`;
@@ -288,11 +287,11 @@ suggestions.addEventListener('click', function () {
   // Xử lý hiển thị massage chỉ dẫn gợi ý:
   if (answerElement.value === '') {
     answerElement.classList.add('invalid');
-    suggestionsMsg.innerHTML = `Lười học là "Bệnh cần chống như chống giặc!"`;
+    suggestionsMsg.innerHTML = `<div id='sum10'>Lười học là "Bệnh cần chống như chống giặc!"</div>`;
     return;
   } else {
     answerElement.classList.add('invalid');
-    suggestionsMsg.innerHTML = `Click Next để kiểm tra kết quả của bạn!`;
+    suggestionsMsg.innerHTML = `<div id='sum10'>Click Next để kiểm tra kết quả của bạn!</div>`;
     return;
   }
 });
@@ -302,32 +301,34 @@ submit.addEventListener('click', function () {
   formMessage.innerHTML = '';
   suggestionsMsg.innerHTML = '';
   if (!answerElement.value) {
-    suggestionsMsg.innerHTML = '';
     answerElement.classList.add('invalid');
-    submitResult.innerHTML = `Bạn cần phải trả lời trước khi bấm nộp bài`;
+    submitResult.innerHTML = `<div id='sum10'>Bạn cần phải trả lời tối thiểu 10 câu hỏi <br> Trước khi bấm nộp bài</div>`;
     if (i >= minRequirements) {
-      submitResult.classList.add('correctResult');
       submitResult.classList.remove('correctResults');
+      submitResult.classList.add('correctResult');
       answerElement.classList.remove('invalid');
       submitResult.innerHTML = `Chúc mừng bạn đã vượt qua thử thách! <br> Kết quả của bạn đã được gửi tới hòm thư: nguyenthanhhoa075@gmail.com.`;
-      playBeyMusic();
+      playGoodBeyMusic();
     }
     return;
   }
   if (i < minRequirements) {
     answerElement.classList.add('invalid');
-    submitResult.innerHTML = `Hoàn thành đủ 10 câu trả lời đúng <br> mới được nộp bài!`;
+    submitResult.innerHTML = `<div id='sum10'>Hoàn thành đủ 10 câu trả lời đúng <br> mới được nộp bài!</div>`;
   }
 });
 
 // Xóa massage lỗi và input value khi focus input:
 answerElement.addEventListener('focus', function handleClearError(e) {
+  playBackgroundMusic();
+  submitCl.innerText = 'Nộp bài';
   formMessage.innerHTML = '';
   submitResult.innerHTML = '';
   suggestionsMsg.innerHTML = '';
   answerElement.classList.remove('invalid');
   answerElement.classList.remove('addInvalid');
-  playBackgroundMusic();
+  submitResult.classList.remove('correctResult');
+  submitResult.classList.remove('correctResults');
   e.target.value = '';
 });
 
@@ -343,15 +344,6 @@ answerElement.addEventListener('keydown', function (event) {
     answerElement.value = '';
   }
 });
-
-//  Thay đổi tiếng đúng / sai:
-var audioPlays = ['sairoichipoi.m4a', 'Tieng-yeah-tre-con.mp3'];
-var audioElement = document.querySelector('#audioErrors');
-function playerMusic() {
-  audioElement.innerHTML = `<audio id='audioError' src="./${audioPlays[1]}"></audio>`;
-  var audio = document.querySelector('#audioError');
-  audio.play();
-}
 
 // Xử lý so sánh (Tham chiếu) input value với chỗi gốc:
 answerElement.oninput = function () {
@@ -372,14 +364,31 @@ answerElement.oninput = function () {
   }
 };
 
-var audioBackgroundEle = document.querySelector('#audioBackgroundPlay');
-var audioBeyEle = document.querySelector('#audioBeyPlay');
+//  Các hàm xử lý Audio:
+var audioLists = ['Am_Ohno', 'Uoc_mo_cua_Me', 'yeah', 'Tam_biet', 'Nhac_nen_hay'];
+var backgroundMusic;
+isPlayIng = false;
+function playErrorMusic() {
+  var errorMusic = audioElement;
+  audioElement.src = `./${audioLists[0]}.mp3`;
+  errorMusic.play();
+}
 function playBackgroundMusic() {
-  audioBackgroundEle.play();
+  backgroundMusic = audioElement;
+  audioElement.src = `./${audioLists[1]}.mp3`;
+  backgroundMusic.play();
 }
 function pauseBackgroundMusic() {
-  audioBackgroundEle.pause();
+  backgroundMusic.pause();
 }
-function playBeyMusic() {
-  audioBeyEle.play();
+
+function playGoodBeyMusic() {
+  var beyMusic = audioElement;
+  audioElement.src = `./${audioLists[3]}.mp3`;
+  beyMusic.play();
+}
+
+function playMusicYeah() {
+  var yeahMusicElement = appElement.querySelector('#yeahMusic');
+  yeahMusicElement.play();
 }
